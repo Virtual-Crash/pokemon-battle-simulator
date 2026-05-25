@@ -36,9 +36,13 @@ jobs:
           rm -rf docs
           cp -R dist docs
           touch docs/.nojekyll
+          cp docs/index.html index.html
+          rm -rf assets
+          cp -R docs/assets assets
+          touch .nojekyll
 
       - name: Commit built site
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Build GitHub Pages site
-          file_pattern: docs
+          file_pattern: docs index.html assets .nojekyll
